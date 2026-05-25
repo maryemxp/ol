@@ -241,7 +241,6 @@ function initGeography() {
 }
 
 // SECTION 5: ENTERTAINMENT GAMES
-// 1. Sliding Puzzle Engine
 let puzzleState = [1, 2, 3, 4, 5, 6, 7, 8, ""];
 function initPuzzle() {
     puzzleState.sort(() => Math.random() - 0.5);
@@ -278,7 +277,6 @@ function checkPuzzleWin() {
     }
 }
 
-// 2. Word Scramble Engine
 const scrambleWords = ["PYTHON", "JAVASCRIPT", "CYBERSECURITY", "INTELLIGENCE", "METAVERSE"];
 let targetWord = "";
 function initScramble() {
@@ -302,7 +300,6 @@ function checkScramble() {
     }
 }
 
-// 3. Tic-Tac-Toe AI
 let xoState = ["","","","","","","","",""];
 function initXO() {
     xoState = ["","","","","","","","",""];
@@ -329,7 +326,6 @@ function playerXO(element, idx) {
     }
 }
 
-// AI choice
 function aiXO() {
     let emptyIndices = xoState.map((val, idx) => val === "" ? idx : null).filter(val => val !== null);
     if(emptyIndices.length === 0) return;
@@ -356,49 +352,45 @@ function checkXOWinner() {
 }
 
 // ==========================================
-// PREMIUM ENGLISH ACADEMY ENGINE (15 LANGUAGES)
+// UPDATED CORE: 4 CHOSEN LANGUAGES ONLY
 // ==========================================
-const nativeLanguages = [
-    "Arabic", "Spanish", "French", "German", "Turkish", 
-    "Russian", "Italian", "Portuguese", "Chinese", "Japanese", 
-    "Korean", "Hindi", "Indonesian", "Dutch", "Swedish"
-];
+const nativeLanguages = ["العربية (Arabic)", "Français (French)", "Deutsch (German)", "Español (Spanish)"];
 
 const englishStoriesDatabase = [
     {
         id: 1,
         english: "The brave astronaut landed safely on Mars and discovered glowing blue crystals.",
-        vocab: [ {word: "Brave", trans: "شجاع"}, {word: "Discovered", trans: "اكتشف"} ],
+        vocab: [ {word: "Brave", trans: "شجاع / Courageux / Mutig / Valiente"}, {word: "Discovered", trans: "اكتشف / Découvert / Entdeckt / Descubrió"} ],
         quiz: { q: "Where did the astronaut land?", options: ["Jupiter", "Mars", "The Moon"], correct: "Mars" },
         translations: {
-            "Arabic": "هبط رائد الفضاء الشجاع بأمان على كوكب المريخ واكتشف بلورات زرقاء متوهجة.",
-            "Spanish": "El valiente astronauta aterrizó a salvo en Marte y descubrió cristales azules brillantes.",
-            "French": "Le courageux astronaute a atterri en toute sécurité sur Mars et a découvert des cristaux bleus brillants.",
-            "German": "Der mutige Astronaut landete sicher auf dem Mars und entdeckte leuchtend blaue Kristalle."
+            "العربية (Arabic)": "هبط رائد الفضاء الشجاع بأمان على كوكب المريخ واكتشف بلورات زرقاء متوهجة.",
+            "Français (French)": "Le courageux astronaute a atterri en toute sécurité sur Mars et a découvert des cristaux bleus brillants.",
+            "Deutsch (German)": "Der mutige Astronaut landete sicher auf dem Mars und entdeckte leuchtend blaue Kristalle.",
+            "Español (Spanish)": "El valiente astronauta aterrizó a salvo en Marte y descubrió cristales azules brillantes."
         }
     },
     {
         id: 2,
         english: "She found a mysterious ancient key hidden inside a hollow oak tree in the deep forest.",
-        vocab: [ {word: "Mysterious", trans: "غامض"}, {word: "Hidden", trans: "مخفي"} ],
+        vocab: [ {word: "Mysterious", trans: "غامض / Mystérieux / Geheimnisvoll / Misteriosa"}, {word: "Hidden", trans: "مخفي / Caché / Versteckt / Escondida"} ],
         quiz: { q: "What did she find?", options: ["A golden box", "An ancient key", "A map"], correct: "An ancient key" },
         translations: {
-            "Arabic": "وجدت مفتاحاً أثرياً غامضاً مخبأً داخل شجرة بلوط مجوفة في الغابة العميقة.",
-            "Spanish": "Ella encontró una misteriosa llave antigua escondida dentro de un roble hueco en el bosque profundo.",
-            "French": "Elle a trouvé une clé ancienne mystérieuse cachée à l'intérieur d'un chêne creux dans la forêt profonde.",
-            "German": "Sie fand einen geheimnisvollen alten Schlüssel, der in einer hohlen Eiche im tiefen Wald versteckt war."
+            "العربية (Arabic)": "وجدت مفتاحاً أثرياً غامضاً مخبأً داخل شجرة بلوط مجوفة في الغابة العميقة.",
+            "Français (French)": "Elle a trouvé une clé ancienne mystérieuse cachée à l'intérieur d'un chêne creux dans la forêt profonde.",
+            "Deutsch (German)": "Sie fand einen geheimnisvollen alten Schlüssel, der in einer hohlen Eiche im tiefen Wald versteckt war.",
+            "Español (Spanish)": "Ella encontró una misteriosa llave antigua escondida dentro de un roble hueco en el bosque profundo."
         }
     },
     {
         id: 3,
         english: "The deep blue ocean conceals infinite secrets and beautiful sunken cities from the past.",
-        vocab: [ {word: "Conceals", trans: "يخفي / يكتم"}, {word: "Sunken", trans: "غارقة"} ],
+        vocab: [ {word: "Conceals", trans: "يخفي / Dissimule / Birgt / Oculta"}, {word: "Sunken", trans: "غارقة / Englouties / Versunkene / Hundidas"} ],
         quiz: { q: "What does the ocean conceal?", options: ["Infinite secrets", "Nothing", "Just fish"], correct: "Infinite secrets" },
         translations: {
-            "Arabic": "يخفي المحيط الأزرق العميق أسراراً لا نهاية لها ومدناً غارقة جميلة من الماضي.",
-            "Spanish": "El océano azul profundo oculta infinitos secretos y hermosas ciudades hundidas del pasado.",
-            "French": "L'océan bleu profond dissimule des secrets infinis et de magnifiques cités englouties du passé.",
-            "German": "Der tiefblaue Ozean birgt unendliche Geheimnisse und wunderschöne versunkene Städte aus der Vergangenheit."
+            "العربية (Arabic)": "يخفي المحيط الأزرق العميق أسراراً لا نهاية لها ومدناً غارقة جميلة من الماضي.",
+            "Français (French)": "L'océan bleu profond dissimule des secrets infinis et de magnifiques cités englouties du passé.",
+            "Deutsch (German)": "Der tiefblaue Ozean birgt unendliche Geheimnisse und wunderschöne versunkene Städte aus der Vergangenheit.",
+            "Español (Spanish)": "El océano azul profundo oculta infinitos secretos y hermosas ciudades hundidas del pasado."
         }
     }
 ];
@@ -416,7 +408,7 @@ function buildNativeLanguageDropdown() {
         opt.innerText = lang;
         nativeSel.appendChild(opt);
     });
-    nativeSel.value = "Arabic";
+    nativeSel.value = "العربية (Arabic)";
 }
 
 function updateEnglishAcademy() {
@@ -429,7 +421,7 @@ function updateEnglishAcademy() {
     document.getElementById('story-number').innerText = `Story ${currentEnglishStoryIdx + 1} / 20`;
     document.getElementById('target-story-text').innerText = currentData.english;
     
-    let nativeTranslation = currentData.translations[selectedNative] || currentData.translations["Arabic"] + ` (${selectedNative} translation active)`;
+    let nativeTranslation = currentData.translations[selectedNative];
     document.getElementById('native-story-text').innerText = nativeTranslation;
 
     const vocabContainer = document.getElementById('vocab-container');
