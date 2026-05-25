@@ -48,8 +48,8 @@
 
             <div class="section-card" onclick="openSection('lang-polyglot')">
                 <div class="icon-wrapper"><i class="fa-solid fa-language"></i></div>
-                <h3>Polyglot Academy</h3>
-                <p>Learn 30 languages via parallel short stories</p>
+                <h3>AI English Mastery</h3>
+                <p>Learn English via 15 native languages & stories</p>
             </div>
         </main>
 
@@ -231,27 +231,50 @@
 
         <div id="lang-polyglot" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
-            <h2>Polyglot Academy</h2>
-            <div class="interactive-box">
-                <label>Select Native Language (You Know):</label>
-                <select id="native-lang-select" class="styled-select" onchange="updateStoryInterface()"></select>
+            
+            <div class="academy-header">
+                <h2><i class="fa-solid fa-graduation-cap"></i> AI English Mastery</h2>
+                <p class="subtitle">Immersive stories, smart vocabulary & dynamic quizzes</p>
+            </div>
 
-                <label style="margin-top: 15px; display: block;">Select Target Language (To Learn):</label>
-                <select id="target-lang-select" class="styled-select" onchange="updateStoryInterface()"></select>
+            <div class="interactive-box">
+                <div class="selector-group">
+                    <label for="native-lang-select"><i class="fa-solid fa-earth-africa"></i> Select Your Native Language:</label>
+                    <select id="native-lang-select" class="styled-select" onchange="updateEnglishAcademy()">
+                        </select>
+                </div>
 
                 <div class="story-display-box">
                     <div class="story-header-nav">
-                        <button class="nav-story-btn" onclick="changeStory(-1)"><i class="fa-solid fa-chevron-left"></i> Previous</button>
-                        <span id="story-number">Story 1 / 20</span>
-                        <button class="nav-story-btn" onclick="changeStory(1)">Next <i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="nav-story-btn" onclick="changeEnglishStory(-1)"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                        <span id="story-number" class="badge-glow">Story 1 / 20</span>
+                        <button class="nav-story-btn" onclick="changeEnglishStory(1)">Next <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                     
                     <div class="story-content">
-                        <h5>Target Language (Read This):</h5>
+                        <h5 class="lang-tag-en">English (Read & Listen)</h5>
                         <p id="target-story-text" class="story-p-target"></p>
+                        
                         <hr class="story-divider">
-                        <h5>Native Translation (Reference):</h5>
+                        
+                        <h5 class="lang-tag-native">Your Native Translation</h5>
                         <p id="native-story-text" class="story-p-native"></p>
+                    </div>
+                </div>
+
+                <div class="vocab-section">
+                    <h4><i class="fa-solid fa-lightbulb"></i> AI Key Vocabulary</h4>
+                    <div id="vocab-container" class="vocab-grid">
+                        </div>
+                </div>
+
+                <div class="quiz-section">
+                    <h4><i class="fa-solid fa-clipboard-question"></i> Quick Comprehension Check</h4>
+                    <div class="quiz-box">
+                        <p id="quiz-question-text">Loading question...</p>
+                        <div id="quiz-options-container" class="quiz-options-vertical">
+                            </div>
+                        <div id="quiz-feedback" class="feedback"></div>
                     </div>
                 </div>
             </div>
