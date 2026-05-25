@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperApp AI - Competition Edition</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <div class="app-container">
+        <!-- HEADER -->
         <header>
             <h1 id="app-title">NovaSphere</h1>
             <p id="app-subtitle">The Ultimate AI Smart Companion</p>
         </header>
 
+        <!-- MAIN DASHBOARD (SECTIONS) -->
         <main id="main-dashboard" class="view-section">
             <div class="section-card" onclick="openSection('ai-health')">
                 <div class="icon-wrapper alert-glow"><i class="fa-solid fa-brain"></i></div>
@@ -49,10 +52,11 @@
             <div class="section-card" onclick="openSection('lang-polyglot')">
                 <div class="icon-wrapper"><i class="fa-solid fa-language"></i></div>
                 <h3>AI English Mastery</h3>
-                <p>Learn English via 15 native languages & stories</p>
+                <p>Learn English via your native languages & stories</p>
             </div>
         </main>
 
+        <!-- SECTION 1: AI HEALTH OPTIONS -->
         <div id="ai-health" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h2>AI Health & Vision</h2>
@@ -68,6 +72,7 @@
             </div>
         </div>
 
+        <!-- SUB-OPTIONS FOR SECTION 1 -->
         <div id="calorie-detector" class="view-section hidden">
             <button class="back-btn" onclick="goBack('ai-health')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h3>AI Calorie Scanner</h3>
@@ -96,6 +101,7 @@
             </div>
         </div>
 
+        <!-- SECTION 2: SLEEP & WELLNESS -->
         <div id="sleep-wellness" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h2>Sleep & Wellness</h2>
@@ -132,6 +138,7 @@
             </div>
         </div>
 
+        <!-- SECTION 3: EDU ACADEMY -->
         <div id="edu-academy" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h2>Edu Academy</h2>
@@ -173,14 +180,17 @@
             </div>
         </div>
 
+        <!-- SECTION 4: GEO DISCOVER -->
         <div id="geo-discover" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h2>Geo Discover</h2>
             <p class="subtitle">Explore 195 Countries & Hidden Secrets</p>
             <div id="countries-container" class="countries-grid">
-                </div>
+                <!-- Injected dynamically via JS -->
+            </div>
         </div>
 
+        <!-- SECTION 5: ENTERTAINMENT & GAMING -->
         <div id="entertainment" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h2>Entertainment & Gaming Zone</h2>
@@ -200,6 +210,7 @@
             </div>
         </div>
 
+        <!-- Sliding Puzzle View -->
         <div id="puzzle-game" class="view-section hidden">
             <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h3>Sliding Puzzle (Order the numbers)</h3>
@@ -209,6 +220,7 @@
             </div>
         </div>
 
+        <!-- Word Scramble View -->
         <div id="scramble-game" class="view-section hidden">
             <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h3>Word Scramble</h3>
@@ -220,6 +232,7 @@
             </div>
         </div>
 
+        <!-- Tic Tac Toe View -->
         <div id="xo-game" class="view-section hidden">
             <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             <h3>Tic-Tac-Toe (vs Smart AI)</h3>
@@ -229,6 +242,7 @@
             </div>
         </div>
 
+        <!-- SECTION 6: POLYGLOT ACADEMY (ENGLISH MASTERY) -->
         <div id="lang-polyglot" class="view-section hidden">
             <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
             
@@ -238,12 +252,15 @@
             </div>
 
             <div class="interactive-box">
+                <!-- Native Language Selection (اللغات التي يتقنها) -->
                 <div class="selector-group">
-                    <label for="native-lang-select"><i class="fa-solid fa-earth-africa"></i> Select Your Native Language:</label>
+                    <label for="native-lang-select"><i class="fa-solid fa-earth-africa"></i> اختر اللغة التي تتقنها (Select Your Known Language):</label>
                     <select id="native-lang-select" class="styled-select" onchange="updateEnglishAcademy()">
-                        </select>
+                        <!-- 4 Selected Languages injected via JS -->
+                    </select>
                 </div>
 
+                <!-- Dynamic Story Dashboard -->
                 <div class="story-display-box">
                     <div class="story-header-nav">
                         <button class="nav-story-btn" onclick="changeEnglishStory(-1)"><i class="fa-solid fa-chevron-left"></i> Prev</button>
@@ -257,23 +274,27 @@
                         
                         <hr class="story-divider">
                         
-                        <h5 class="lang-tag-native">Your Native Translation</h5>
-                        <p id="native-story-text" class="story-p-native"></p>
+                        <h5 class="lang-tag-native">الترجمة / Translation</h5>
+                        <p id="native-story-text" class="story-p-native" dir="auto"></p>
                     </div>
                 </div>
 
+                <!-- AI Vocabulary Extractor -->
                 <div class="vocab-section">
                     <h4><i class="fa-solid fa-lightbulb"></i> AI Key Vocabulary</h4>
                     <div id="vocab-container" class="vocab-grid">
-                        </div>
+                        <!-- Dynamically generated flashcards -->
+                    </div>
                 </div>
 
+                <!-- Interactive Comprehension Quiz -->
                 <div class="quiz-section">
                     <h4><i class="fa-solid fa-clipboard-question"></i> Quick Comprehension Check</h4>
                     <div class="quiz-box">
                         <p id="quiz-question-text">Loading question...</p>
                         <div id="quiz-options-container" class="quiz-options-vertical">
-                            </div>
+                            <!-- Options injected here -->
+                        </div>
                         <div id="quiz-feedback" class="feedback"></div>
                     </div>
                 </div>
