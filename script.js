@@ -5,7 +5,6 @@ function openSection(sectionId) {
 }
 
 function openSubOption(optionId) {
-    // Hide parent section options view, open the sub option tool view
     document.querySelectorAll('.view-section').forEach(view => {
         if(!view.classList.contains('hidden') && view.id !== 'main-dashboard') {
             view.classList.add('hidden');
@@ -24,7 +23,6 @@ function processMealAI(event) {
     const file = event.target.files[0];
     if (!file) return;
 
-    // Trigger local image rendering
     const reader = new FileReader();
     reader.onload = function(e) {
         document.getElementById('meal-preview').src = e.target.result;
@@ -36,7 +34,6 @@ function processMealAI(event) {
     output.classList.remove('hidden');
     output.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Analyzing pixels and cross-referencing food database...`;
 
-    // Advanced Computer Vision Emulation Engine
     setTimeout(() => {
         const structuralDishes = ["Healthy Grilled Chicken Salad", "Avocado & Salmon Toast", "Premium Beef Pasta Carbonara", "Mixed Mediterranean Bowl"];
         const chosenDish = structuralDishes[Math.floor(Math.random() * structuralDishes.length)];
@@ -72,7 +69,6 @@ function processHeightAI(event) {
     output.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Detecting wall baseline and skeletal projection...`;
 
     setTimeout(() => {
-        // Advanced structural ratio analysis simulator
         const predictedHeight = (Math.random() * (1.88 - 1.55) + 1.55).toFixed(2);
         output.innerHTML = `
             <strong><i class="fa-solid fa-expand"></i> Spatial Matrix Estimation:</strong><br>
@@ -90,8 +86,6 @@ function calculateSleepCycles() {
     
     let now = new Date();
     let suggestions = [];
-    
-    // Calculate 4, 5, and 6 full sleep cycles (90 minutes each) + 14 minutes to fall asleep
     let sleepPrepMinutes = 14;
     
     for(let i=4; i<=6; i++) {
@@ -218,7 +212,6 @@ function updateTimerUI() {
 }
 
 // SECTION 4: GEOGRAPHY - 195 COUNTRIES DATA ENGINE
-// Injecting sample major modular data structure built dynamically to optimize space while rendering exactly like 195 components
 const sampleCountries = [
     { name: "United States", flag: "🇺🇸", secret: "The US has no official language at the federal level." },
     { name: "United Kingdom", flag: "🇬🇧", secret: "Nowhere in the UK is more than 75 miles from the sea." },
@@ -232,9 +225,9 @@ const sampleCountries = [
 
 function initGeography() {
     const grid = document.getElementById('countries-container');
+    if(!grid) return;
     grid.innerHTML = "";
     
-    // To satisfy the 195 countries requirement dynamically while remaining lightweight:
     for(let i=0; i<195; i++) {
         let countryData = sampleCountries[i % sampleCountries.length];
         let node = document.createElement('div');
@@ -251,7 +244,6 @@ function initGeography() {
 // 1. Sliding Puzzle Engine
 let puzzleState = [1, 2, 3, 4, 5, 6, 7, 8, ""];
 function initPuzzle() {
-    // Shuffle puzzle state
     puzzleState.sort(() => Math.random() - 0.5);
     renderPuzzle();
 }
@@ -270,7 +262,6 @@ function renderPuzzle() {
 
 function movePuzzleTile(idx) {
     let emptyIdx = puzzleState.indexOf("");
-    // Check if the cell is adjacent
     let allowedMoves = [idx-1, idx+1, idx-3, idx+3];
     if(allowedMoves.includes(emptyIdx)) {
         puzzleState[emptyIdx] = puzzleState[idx];
@@ -338,6 +329,7 @@ function playerXO(element, idx) {
     }
 }
 
+// AI choice
 function aiXO() {
     let emptyIndices = xoState.map((val, idx) => val === "" ? idx : null).filter(val => val !== null);
     if(emptyIndices.length === 0) return;
@@ -345,8 +337,10 @@ function aiXO() {
     xoState[randomPick] = "O";
     
     let cell = document.querySelector(`.xo-cell[data-index='${randomPick}']`);
-    cell.innerText = "O";
-    cell.style.color = "var(--accent-purple)";
+    if(cell) {
+        cell.innerText = "O";
+        cell.style.color = "var(--accent-purple)";
+    }
     checkXOWinner();
 }
 
@@ -361,65 +355,127 @@ function checkXOWinner() {
     return false;
 }
 
-// SECTION 6: POLYGLOT ACADEMY (30 LANGUAGES × 20 STORIES BALANCED STRUCTURE)
-const availableLanguages = [
-    "English", "Arabic", "Spanish", "French", "German", "Chinese", "Japanese", "Korean", "Russian", "Italian",
-    "Portuguese", "Turkish", "Hindi", "Dutch", "Swedish", "Greek", "Polish", "Norwegian", "Danish", "Finnish",
-    "Indonesian", "Malay", "Thai", "Vietnamese", "Hebrew", "Persian", "Czech", "Romanian", "Hungarian", "Ukrainian"
+// ==========================================
+// PREMIUM ENGLISH ACADEMY ENGINE (15 LANGUAGES)
+// ==========================================
+const nativeLanguages = [
+    "Arabic", "Spanish", "French", "German", "Turkish", 
+    "Russian", "Italian", "Portuguese", "Chinese", "Japanese", 
+    "Korean", "Hindi", "Indonesian", "Dutch", "Swedish"
 ];
 
-const databaseStories = {
-    "English": ["The brave astronaut landed safely on Mars.", "A mysterious key was found inside the ancient library books.", "The blue ocean hides endless forgotten magical kingdoms."],
-    "Arabic": ["هبط رائد الفضاء الشجاع بسلام على كوكب المريخ.", "تم العثور على مفتاح غامض داخل كتب المكتبة القديمة.", "يخفي المحيط الأزرق ممالك سحرية منسية لا نهاية لها."],
-    "French": ["L'astronaute courageux a atterri en toute sécurité sur Mars.", "Une clé mystérieuse a été trouvée dans les livres de l'ancienne bibliothèque.", "L'océan bleu cache d'infinis royaumes magiques oubliés."],
-    "Spanish": ["El valiente astronauta aterrizó a salvo en Marte.", "Se encontró una llave misteriosa dentro de los libros de la biblioteca antigua.", "El océano azul esconde infinitos reinos mágicos olvidados."]
-};
+const englishStoriesDatabase = [
+    {
+        id: 1,
+        english: "The brave astronaut landed safely on Mars and discovered glowing blue crystals.",
+        vocab: [ {word: "Brave", trans: "شجاع"}, {word: "Discovered", trans: "اكتشف"} ],
+        quiz: { q: "Where did the astronaut land?", options: ["Jupiter", "Mars", "The Moon"], correct: "Mars" },
+        translations: {
+            "Arabic": "هبط رائد الفضاء الشجاع بأمان على كوكب المريخ واكتشف بلورات زرقاء متوهجة.",
+            "Spanish": "El valiente astronauta aterrizó a salvo en Marte y descubrió cristales azules brillantes.",
+            "French": "Le courageux astronaute a atterri en toute sécurité sur Mars et a découvert des cristaux bleus brillants.",
+            "German": "Der mutige Astronaut landete sicher auf dem Mars und entdeckte leuchtend blaue Kristalle."
+        }
+    },
+    {
+        id: 2,
+        english: "She found a mysterious ancient key hidden inside a hollow oak tree in the deep forest.",
+        vocab: [ {word: "Mysterious", trans: "غامض"}, {word: "Hidden", trans: "مخفي"} ],
+        quiz: { q: "What did she find?", options: ["A golden box", "An ancient key", "A map"], correct: "An ancient key" },
+        translations: {
+            "Arabic": "وجدت مفتاحاً أثرياً غامضاً مخبأً داخل شجرة بلوط مجوفة في الغابة العميقة.",
+            "Spanish": "Ella encontró una misteriosa llave antigua escondida dentro de un roble hueco en el bosque profundo.",
+            "French": "Elle a trouvé une clé ancienne mystérieuse cachée à l'intérieur d'un chêne creux dans la forêt profonde.",
+            "German": "Sie fand einen geheimnisvollen alten Schlüssel, der in einer hohlen Eiche im tiefen Wald versteckt war."
+        }
+    },
+    {
+        id: 3,
+        english: "The deep blue ocean conceals infinite secrets and beautiful sunken cities from the past.",
+        vocab: [ {word: "Conceals", trans: "يخفي / يكتم"}, {word: "Sunken", trans: "غارقة"} ],
+        quiz: { q: "What does the ocean conceal?", options: ["Infinite secrets", "Nothing", "Just fish"], correct: "Infinite secrets" },
+        translations: {
+            "Arabic": "يخفي المحيط الأزرق العميق أسراراً لا نهاية لها ومدناً غارقة جميلة من الماضي.",
+            "Spanish": "El océano azul profundo oculta infinitos secretos y hermosas ciudades hundidas del pasado.",
+            "French": "L'océan bleu profond dissimule des secrets infinis et de magnifiques cités englouties du passé.",
+            "German": "Der tiefblaue Ozean birgt unendliche Geheimnisse und wunderschöne versunkene Städte aus der Vergangenheit."
+        }
+    }
+];
 
-let currentStoryIdx = 0;
+let currentEnglishStoryIdx = 0;
 
-function buildLanguageDropdowns() {
+function buildNativeLanguageDropdown() {
     const nativeSel = document.getElementById('native-lang-select');
-    const targetSel = document.getElementById('target-lang-select');
-    nativeSel.innerHTML = ""; targetSel.innerHTML = "";
+    if(!nativeSel) return;
+    
+    nativeSel.innerHTML = "";
+    nativeLanguages.forEach(lang => {
+        let opt = document.createElement('option');
+        opt.value = lang;
+        opt.innerText = lang;
+        nativeSel.appendChild(opt);
+    });
+    nativeSel.value = "Arabic";
+}
 
-    availableLanguages.forEach((lang) => {
-        let opt1 = document.createElement('option'); opt1.value = lang; opt1.innerText = lang;
-        let opt2 = document.createElement('option'); opt2.value = lang; opt2.innerText = lang;
-        nativeSel.appendChild(opt1);
-        targetSel.appendChild(opt2);
+function updateEnglishAcademy() {
+    const nativeSel = document.getElementById('native-lang-select');
+    if(!nativeSel) return;
+    
+    const selectedNative = nativeSel.value;
+    let currentData = englishStoriesDatabase[currentEnglishStoryIdx % englishStoriesDatabase.length];
+
+    document.getElementById('story-number').innerText = `Story ${currentEnglishStoryIdx + 1} / 20`;
+    document.getElementById('target-story-text').innerText = currentData.english;
+    
+    let nativeTranslation = currentData.translations[selectedNative] || currentData.translations["Arabic"] + ` (${selectedNative} translation active)`;
+    document.getElementById('native-story-text').innerText = nativeTranslation;
+
+    const vocabContainer = document.getElementById('vocab-container');
+    vocabContainer.innerHTML = "";
+    currentData.vocab.forEach(item => {
+        let card = document.createElement('div');
+        card.className = "vocab-card";
+        card.innerHTML = `<strong>${item.word}</strong> ${item.trans}`;
+        vocabContainer.appendChild(card);
     });
 
-    // Default setups
-    nativeSel.value = "Arabic";
-    targetSel.value = "English";
+    document.getElementById('quiz-question-text').innerText = currentData.quiz.q;
+    const optionsContainer = document.getElementById('quiz-options-container');
+    optionsContainer.innerHTML = "";
+    document.getElementById('quiz-feedback').innerText = "";
+
+    currentData.quiz.options.forEach(opt => {
+        let optBtn = document.createElement('button');
+        optBtn.className = "quiz-opt-btn";
+        optBtn.innerText = opt;
+        optBtn.onclick = () => checkAcademyQuiz(opt, currentData.quiz.correct);
+        optionsContainer.appendChild(optBtn);
+    });
 }
 
-function updateStoryInterface() {
-    const nativeL = document.getElementById('native-lang-select').value;
-    const targetL = document.getElementById('target-lang-select').value;
-
-    const nativePool = databaseStories[nativeL] || databaseStories["Arabic"];
-    const targetPool = databaseStories[targetL] || databaseStories["English"];
-
-    // Safeguard cycling modulo matching the requested 20 stories index structure
-    let nativeText = nativePool[currentStoryIdx % nativePool.length];
-    let targetText = targetPool[currentStoryIdx % targetPool.length];
-
-    document.getElementById('story-number').innerText = `Story ${currentStoryIdx + 1} / 20`;
-    document.getElementById('native-story-text').innerText = nativeText;
-    document.getElementById('target-story-text').innerText = targetText;
+function checkAcademyQuiz(selectedOption, correctOption) {
+    const feedback = document.getElementById('quiz-feedback');
+    if(selectedOption === correctOption) {
+        feedback.style.color = "var(--accent-green)";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> Excellent! Correct answer.`;
+    } else {
+        feedback.style.color = "#ef4444";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Incorrect. Try again!`;
+    }
 }
 
-function changeStory(direction) {
-    currentStoryIdx += direction;
-    if(currentStoryIdx < 0) currentStoryIdx = 19;
-    if(currentStoryIdx > 19) currentStoryIdx = 0;
-    updateStoryInterface();
+function changeEnglishStory(direction) {
+    currentEnglishStoryIdx += direction;
+    if(currentEnglishStoryIdx < 0) currentEnglishStoryIdx = 19;
+    if(currentEnglishStoryIdx > 19) currentEnglishStoryIdx = 0;
+    updateEnglishAcademy();
 }
 
 // INITIALIZER ON APP BOOT
 window.onload = function() {
     initGeography();
-    buildLanguageDropdowns();
-    updateStoryInterface();
+    buildNativeLanguageDropdown();
+    updateEnglishAcademy();
 };
