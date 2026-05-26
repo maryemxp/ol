@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health & Learning Web Hub</title>
+    <!-- Tailwind CSS CDN for sleek, modern layout designs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .screen { display: none; }
+        .screen.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- GLOBAL PLATFORM NAVBAR -->
+    <nav class="bg-indigo-600 text-white shadow-md px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2 cursor-pointer" onclick="showScreen('dashboard')">
+            <span class="text-2xl font-black tracking-wider">AI.HUB</span>
+        </div>
+        <div class="text-sm font-medium bg-indigo-700 px-3 py-1.5 rounded-lg border border-indigo-500/30">
+            Ecosystem Status: Connected
+        </div>
+    </nav>
+
+    <!-- MAIN PLATFORM WRAPPER -->
+    <main class="max-w-6xl mx-auto p-6 md:p-10">
+
+        <!-- ================================================================= -->
+        <!-- SCREEN 1: MAIN DASHBOARD VIEW                                     -->
+        <!-- ================================================================= -->
+        <section id="dashboard" class="screen active space-y-8">
+            <div>
+                <h1 class="text-4xl font-extrabold text-indigo-900 tracking-tight">Welcome to your Personal AI Assistant</h1>
+                <p class="text-slate-500 mt-2 text-lg">Select a specialized modular interface below to initialize your web environment.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <!-- Card 1: Health AI -->
+                <div onclick="showScreen('health_hub')" class="group relative bg-gradient-to-br from-emerald-600 to-teal-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer overflow-hidden">
+                    <h3 class="text-2xl font-bold tracking-wide">AI Health & Fitness Section</h3>
+                    <p class="text-emerald-100/80 mt-3 text-sm leading-relaxed">Calculate diet macronutrients via image capture, estimate vertical height metrics against reference bounds, or stabilize physical pose angles.</p>
+                    <div class="mt-6 inline-flex items-center space-x-2 text-sm font-semibold bg-white/20 px-4 py-2 rounded-xl backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                        <span>Launch Workspace</span> <span>&rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: English AI -->
+                <div onclick="showScreen('english_onboarding')" class="group relative bg-gradient-to-br from-indigo-600 to-blue-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer overflow-hidden">
+                    <h3 class="text-2xl font-bold tracking-wide">Real Life English Learning</h3>
+                    <p class="text-blue-100/80 mt-3 text-sm leading-relaxed">Map your direct room environment, vocal interactions, and individual personal interests into adaptive contextual grammar lessons.</p>
+                    <div class="mt-6 inline-flex items-center space-x-2 text-sm font-semibold bg-white/20 px-4 py-2 rounded-xl backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                        <span>Enter Platform</span> <span>&rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- SCREEN 2: HEALTH & AI SUITE MODULE                                -->
+        <!-- ================================================================= -->
+        <section id="health_hub" class="screen space-y-6">
+            <!-- Navigation Return Row -->
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                <button onclick="handleHealthBack()" class="inline-flex items-center text-emerald-700 font-bold hover:text-emerald-900 transition-colors">
+                    &larr; Back to Main Hub
+                </button>
+                <h2 class="text-2xl font-extrabold text-slate-800">AI Health Suite</h2>
+            </div>
+
+            <!-- Health Sub-Menu Matrix -->
+            <div id="health_menu" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div onclick="loadHealthTool('Calorie Counter', 'Upload or snap a food photo to automatically evaluate ingredient portions, macronutrients, and calories.')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:border-emerald-500 transition-all cursor-pointer">
+                    <div class="text-2xl mb-3">🍽️</div>
+                    <h4 class="font-bold text-lg mb-1">AI Calorie Counter</h4>
+                    <p class="text-slate-500 text-sm">Analyze image parameters to extract macro caloric breakdowns.</p>
+                </div>
+
+                <div onclick="loadHealthTool('Height Estimator', 'Stand completely flat against a structural reference wall, take a photo, and let AI process your relative height index.')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:border-emerald-500 transition-all cursor-pointer">
+                    <div class="text-2xl mb-3">📏</div>
+                    <h4 class="font-bold text-lg mb-1">AI Height Estimator</h4>
+                    <p class="text-slate-500 text-sm">Estimate actual anatomical scale parameters relative to surroundings.</p>
+                </div>
+
+                <div onclick="loadHealthTool('Gym Form Corrector (My Feature Choice)', 'Stream real-time webcam video while practicing squats or presses. AI maps joint trajectories to check posture alignment and avoid injury.')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:border-emerald-500 transition-all cursor-pointer">
+                    <div class="text-2xl mb-3">🏋️</div>
+                    <h4 class="font-bold text-lg mb-1">AI Gym Form Corrector</h4>
+                    <p class="text-slate-500 text-sm">Provides real-time dynamic body tracking and vector alignment verification.</p>
+                </div>
+            </div>
+
+            <!-- Active Processing Workspace Platform Display -->
+            <div id="health_workspace" class="hidden bg-white p-10 rounded-2xl shadow-inner border border-slate-200 text-center space-y-4">
+                <div class="text-4xl animate-bounce">🤖</div>
+                <h3 id="workspace_title" class="text-xl font-bold text-slate-800">Processing Node</h3>
+                <p id="workspace_desc" class="max-w-md mx-auto text-sm text-slate-500">Workspace parameters...</p>
+                <div class="pt-4">
+                    <button onclick="resetHealthMenu()" class="bg-slate-200 text-slate-700 px-6 py-2 rounded-xl text-sm font-semibold hover:bg-slate-300 transition-colors">
+                        Return to Tools Selection
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- SCREEN 3: ENGLISH INITIAL ONBOARDING                             -->
+        <!-- ================================================================= -->
+        <section id="english_onboarding" class="screen max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-100 text-center space-y-6">
+            <div class="text-4xl">🌐</div>
+            <div class="space-y-2">
+                <h2 class="text-2xl font-black text-slate-800">Select Native Language</h2>
+                <p class="text-slate-500 text-sm">Your native language will be utilized to deliver translations, instructions, and error explanations clearly.</p>
+            </div>
+
+            <select id="native_lang_selector" class="w-full border border-slate-300 p-3 rounded-xl bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                <option value="Arabic">Arabic (العربية)</option>
+                <option value="French">French (Français)</option>
+                <option value="Spanish">Spanish (Español)</option>
+                <option value="German">German (Deutsch)</option>
+                <option value="Turkish">Turkish (Türkçe)</option>
+            </select>
+
+            <div class="pt-2 flex space-x-3">
+                <button onclick="showScreen('dashboard')" class="w-1/2 bg-slate-100 text-slate-600 py-3 rounded-xl font-bold hover:bg-slate-200 transition-colors text-sm">
+                    Cancel
+                </button>
+                <button onclick="initializeEnglishHub()" class="w-1/2 bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors text-sm shadow-md">
+                    Initialize Setup
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- SCREEN 4: ENGLISH REAL-LIFE ENVIRONMENT ENVIRONMENT HUB            -->
+        <!-- ================================================================= -->
+        <section id="english_hub" class="screen space-y-8">
+            <!-- Navigation Header -->
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                <button onclick="showScreen('dashboard')" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-900 transition-colors">
+                    &larr; Exit Learning Environment
+                </button>
+                <div class="text-right">
+                    <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">Dynamic Tutorial Language</span>
+                    <p id="active_lang_label" class="font-bold text-indigo-700 text-sm">Mode: Unset</p>
+                </div>
+            </div>
+
+            <!-- Two Column Application Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Main Action Content Area -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Daily Challenge Banner Card -->
+                    <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl">
+                        <div class="flex items-center space-x-3">
+                          <span class="text-2xl">🎯</span>
+                          <h4 class="font-extrabold text-amber-900 text-lg">Daily Real-Life Challenge Mission</h4>
+                        </div>
+                        <p class="text-amber-800 mt-2 text-sm leading-relaxed">
+                          "Take a picture of an item you use frequently in your room, then record yourself explaining its purpose in English for 30 seconds."
+                        </p>
+                    </div>
+
+                    <!-- Trigger Elements Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button onclick="triggerCameraModal()" class="flex items-center justify-between p-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md transition-all text-left group">
+                            <div>
+                                <h5 class="font-bold text-lg">Camera Lens AI</h5>
+                                <p class="text-emerald-100/70 text-xs mt-1">Scan object environment</p>
+                            </div>
+                            <span class="text-3xl group-hover:scale-110 transition-transform">📷</span>
+                        </button>
+
+                        <button onclick="triggerMicModal()" class="flex items-center justify-between p-6 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all text-left group">
+                            <div>
+                                <h5 class="font-bold text-lg">Voice Pronounce AI</h5>
+                                <p class="text-purple-100/70 text-xs mt-1">Analyze vocabulary & grammar accuracy</p>
+                            </div>
+                            <span class="text-3xl group-hover:scale-110 transition-transform">🎙️</span>
+                        </button>
+                    </div>
+
+                    <!-- Adaptive AI Conversational Panel Layout -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-4">
+                        <h4 class="font-bold text-slate-800 text-lg flex items-center space-x-2">
+                          <span>💬</span> <span>Dynamic AI Conversation (Context Adaptive)</span>
+                        </h4>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-1">
+                          <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">AI Personal Tutor</p>
+                          <p id="adaptive_chat_bubble" class="text-sm text-slate-700 italic leading-relaxed">
+                            "Loading personalized logs data values..."
+                          </p>
+                        </div>
+                        <div class="flex space-x-2">
+                          <input type="text" placeholder="Type your response to your AI tutor here..." class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                          <button onclick="alert('Response submitted to AI model context vector layer.')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar: Personalized Profile Memory Matrix -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-4">
+                        <h4 class="font-bold text-slate-800 text-lg flex items-center space-x-2">
+                          <span>🧠</span> <span>Personalized AI Memory Logs</span>
+                        </h4>
+                        <p class="text-xs text-slate-400">System tracks continuous vocabulary data weights to construct review prompts automatically.</p>
+                        
+                        <div class="space-y-3">
+                            <div class="border-t border-slate-100 pt-3">
+                                <span class="text-xs font-bold text-slate-500 block mb-2 uppercase tracking-wide">Ecosystem Words Learned:</span>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md border border-slate-200">Laptop <span class="text-slate-400 ml-1 cursor-pointer">🔊</span></span>
+                                    <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md border border-slate-200">Door <span class="text-slate-400 ml-1 cursor-pointer">🔊</span></span>
+                                    <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md border border-slate-200">Coffee Cup <span class="text-slate-400 ml-1 cursor-pointer">🔊</span></span>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-100 pt-3">
+                                <span class="text-xs font-bold text-slate-500 block mb-1 uppercase tracking-wide">Tracked Interests Vector:</span>
+                                <p class="text-sm font-semibold text-slate-700">Technology, Gaming & Music</p>
+                            </div>
+
+                            <div class="border-t border-slate-100 pt-3">
+                                <span class="text-xs font-bold text-slate-500 block mb-1 uppercase tracking-wide">Ecosystem Level Metrics:</span>
+                                <div class="w-full bg-slate-100 rounded-full h-2 mt-1">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 72%"></div>
+                                </div>
+                                <span class="text-[10px] text-slate-400 mt-1 block text-right">Adaptive Matrix Level: 72%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- OVERLAY DETECTOR MODALS (MOCK SYSTEM PROCESSING CORES)             -->
+    <!-- ================================================================= -->
+    <!-- Camera Overlay Framework -->
+    <div id="camera_modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-white max-w-lg w-full rounded-2xl p-6 shadow-2xl border border-slate-100 space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">AI Computer Vision Feed</h3>
+            <div class="aspect-video bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 text-sm border-2 border-dashed border-slate-700">
+                [ Active Web-Camera Connection Simulated View ]
+            </div>
+            <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl space-y-2">
+                <p class="text-sm font-bold text-emerald-800">Scanned Frame Object Matrix: <span class="underline">"Laptop"</span></p>
+                <p class="text-xs text-slate-600">Native Translation Map (<span class="modal_lang_placeholder">...</span>): <span id="translation_placeholder" class="font-bold text-slate-800">حاسوب محمول</span></p>
+                <p class="text-xs text-slate-600">Example Context Sentence: <span class="italic font-medium text-slate-800">"This is my laptop. I use my laptop every day to run code scripts."</span></p>
+                <p class="text-xs text-purple-700 font-bold pt-1">Contextual Lesson Question: "What programs do you run on your laptop?"</p>
+            </div>
+            <button onclick="closeCameraModal()" class="w-full bg-slate-800 text-white py-2.5 rounded-xl text-sm font-bold hover:bg-slate-900 transition-colors">
+                Terminate Camera Stream
+            </button>
+        </div>
+    </div>
+
+    <!-- Microphone Audio Overlay Framework -->
+    <div id="mic_modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-white max-w-sm w-full rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-2xl mx-auto animate-pulse">🎙️</div>
+            <h3 class="text-xl font-bold text-slate-900">AI Voice Analysis Pipeline</h3>
+            <p class="text-sm text-slate-500">Evaluating microphone hardware input channels... Speak aloud now.</p>
+            <div class="text-xs bg-slate-50 p-3 rounded-lg border border-slate-100 text-left space-y-1">
+                <p class="font-semibold text-slate-700">Calculated Metrics Array Matrix:</p>
+                <p class="text-emerald-600 font-bold">• Fluency Tracking Index: 91%</p>
+                <p class="text-indigo-600 font-bold">• Phonetic Structure Match: Valid</p>
+                <p class="text-slate-400 text-[10px] pt-1">Grammar error evaluation logs appended to persistent memory block.</p>
+            </div>
+            <button onclick="closeMicModal()" class="w-full bg-slate-200 text-slate-700 py-2 rounded-xl text-sm font-bold hover:bg-slate-300 transition-colors">
+                Acknowledge Metrics Feedback
+            </button>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC CONTROLLERS                          -->
+    <!-- ================================================================= -->
+    <script>
+        // Reactive Core Route Navigation Management Layer
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Section 1: Health Module Custom Logic Engine
+        function loadHealthTool(toolName, description) {
+            document.getElementById('health_menu').classList.add('hidden');
+            const workspace = document.getElementById('health_workspace');
+            workspace.classList.remove('hidden');
+            
+            document.getElementById('workspace_title').innerText = "Active AI Target: " + toolName;
+            document.getElementById('workspace_desc').innerText = description;
+        }
+
+        function resetHealthMenu() {
+            document.getElementById('health_workspace').classList.add('hidden');
+            document.getElementById('health_menu').classList.remove('hidden');
+        }
+
+        function handleHealthBack() {
+            const menuHidden = document.getElementById('health_menu').classList.contains('hidden');
+            if (menuHidden) {
+                resetHealthMenu();
+            } else {
+                showScreen('dashboard');
+            }
+        }
+
+        // Section 2: Real Life Learning English Onboarding Controllers
+        let userNativeLanguage = "Arabic";
+
+        const translationDictionary = {
+            "Arabic": "حاسوب محمول",
+            "French": "Ordinateur portable",
+            "Spanish": "Ordenador portátil",
+            "German": "Laptop / Tragbarer Computer",
+            "Turkish": "Dizüstü bilgisayar"
+        };
+
+        function initializeEnglishHub() {
+            userNativeLanguage = document.getElementById('native_lang_selector').value;
+            
+            // Set up UI label tracking strings dynamically
+            document.getElementById('active_lang_label').innerText = "Native Language: " + userNativeLanguage;
+            
+            // Generate tailored dynamic tutor conversation based on user environment parameters
+            document.getElementById('adaptive_chat_bubble').innerText = 
+                `"I detected your interest metrics configuration parameters pointing to Technology & Gaming. Since you mapped a computer workstation earlier, let's practice: Describe the color and structural alignment of your room's computer desk using your native ${userNativeLanguage} guidelines if you struggle with specific vocabulary definitions."`;
+                
+            showScreen('english_hub');
+        }
+
+        // Modal Overlay Control Blocks
+        function triggerCameraModal() {
+            document.querySelectorAll('.modal_lang_placeholder').forEach(el => el.innerText = userNativeLanguage);
+            document.getElementById('translation_placeholder').innerText = translationDictionary[userNativeLanguage] || "حاسوب محمول";
+            document.getElementById('camera_modal').classList.remove('hidden');
+        }
+
+        function closeCameraModal() {
+            document.getElementById('camera_modal').classList.add('hidden');
+        }
+
+        function triggerMicModal() {
+            document.getElementById('mic_modal').classList.remove('hidden');
+        }
+
+        document.getElementById('mic_modal').classList.add('hidden');
+
+        function closeMicModal() {
+            document.getElementById('mic_modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
